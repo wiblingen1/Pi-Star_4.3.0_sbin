@@ -104,7 +104,7 @@ done
 # Generate Host Files
 curl --fail -o ${APRSHOSTS} -s http://www.pistar.uk/downloads/APRS_Hosts.txt --user-agent "Pi-Star_${pistarCurVersion}"
 curl --fail -o ${DCSHOSTS} -s http://www.pistar.uk/downloads/DCS_Hosts.txt --user-agent "Pi-Star_${pistarCurVersion}"
-curl --fail -o ${DMRHOSTS} -s http://www.pistar.uk/downloads/DMR_Hosts.txt --user-agent "Pi-Star_${pistarCurVersion}"
+curl --fail -o ${DMRHOSTS} -s http://barrandovhblink.jednoduse.cz/barrandovhblink/DMR_Hosts.txt --user-agent "Pi-Star_${pistarCurVersion}"
 if [ -f /etc/hostfiles.nodextra ]; then
   # Move XRFs to DPlus Protocol
   curl --fail -o ${DPlusHOSTS} -s http://www.pistar.uk/downloads/DPlus_WithXRF_Hosts.txt --user-agent "Pi-Star_${pistarCurVersion}"
@@ -114,7 +114,7 @@ else
   curl --fail -o ${DPlusHOSTS} -s http://www.pistar.uk/downloads/DPlus_Hosts.txt --user-agent "Pi-Star_${pistarCurVersion}"
   curl --fail -o ${DExtraHOSTS} -s http://www.pistar.uk/downloads/DExtra_Hosts.txt --user-agent "Pi-Star_${pistarCurVersion}"
 fi
-curl -sSL http://www.pistar.uk/downloads/DMRIds.dat.gz --user-agent "Pi-Star_${pistarCurVersion}" | gunzip -c > ${DMRIDFILE}
+curl -sSL http://barrandovhblink.jednoduse.cz/barrandovhblink/DMRIds.dat.gz --user-agent "Pi-Star_${pistarCurVersion}" | gunzip -c > ${DMRIDFILE}
 curl --fail -o ${P25HOSTS} -s http://www.pistar.uk/downloads/P25_Hosts.txt --user-agent "Pi-Star_${pistarCurVersion}"
 curl --fail -o ${M17HOSTS} -s http://www.pistar.uk/downloads/M17_Hosts.txt --user-agent "Pi-Star_${pistarCurVersion}"
 curl --fail -o ${YSFHOSTS} -s http://www.pistar.uk/downloads/YSF_Hosts.txt --user-agent "Pi-Star_${pistarCurVersion}"
@@ -130,19 +130,19 @@ curl --fail -o ${TGLISTYSF} -s http://www.pistar.uk/downloads/TGList_YSF.txt --u
 if [ -f ${NEXTIONGROUPS} ]; then
 	# Update ${NEXTIONGROUPS}
  	if [[ $(find "${NEXTIONGROUPS}" -mtime +7) ]]; then
-  		curl --fail -o ${NEXTIONGROUPS} -s http://www.pistar.uk/downloads/groups.txt --user-agent "Pi-Star_${pistarCurVersion}"
+  		curl --fail -o ${NEXTIONGROUPS} -s http://barrandovhblink.jednoduse.cz/barrandovhblink/groups.txt --user-agent "Pi-Star_${pistarCurVersion}"
   	fi
 else
 	# Get ${NEXTIONGROUPS}
- 	curl --fail -o ${NEXTIONGROUPS} -s http://www.pistar.uk/downloads/groups.txt --user-agent "Pi-Star_${pistarCurVersion}"
+ 	curl --fail -o ${NEXTIONGROUPS} -s http://barrandovhblink.jednoduse.cz/barrandovhblink/groups.txt --user-agent "Pi-Star_${pistarCurVersion}"
 fi
 # Download Nextion Users
 if [ -f ${NEXTIONUSERS} ]; then
 	if [[ $(find "${NEXTIONUSERS}" -mtime +7) ]]; then
-		curl -sSL http://www.pistar.uk/downloads/nextionUsers.csv.gz --user-agent "Pi-Star_${pistarCurVersion}" | gunzip -c > ${NEXTIONUSERS}
+		curl -sSL http://barrandovhblink.jednoduse.cz/barrandovhblink/nextionUsers.csv.gz --user-agent "Pi-Star_${pistarCurVersion}" | gunzip -c > ${NEXTIONUSERS}
 	fi
 else
-	curl -sSL http://www.pistar.uk/downloads/nextionUsers.csv.gz --user-agent "Pi-Star_${pistarCurVersion}" | gunzip -c > ${NEXTIONUSERS}
+	curl -sSL http://barrandovhblink.jednoduse.cz/barrandovhblink/nextionUsers.csv.gz --user-agent "Pi-Star_${pistarCurVersion}" | gunzip -c > ${NEXTIONUSERS}
 fi
 
 # If there is a DMR Over-ride file, add it's contents to DMR_Hosts.txt
